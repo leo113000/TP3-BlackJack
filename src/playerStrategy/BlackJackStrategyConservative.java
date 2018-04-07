@@ -5,5 +5,5 @@ import deck.Card;
 
 public class BlackJackStrategyConservative extends BlackJackStrategy {
     @Override
-    public Boolean askAnotherCard(ArrayList<Card> hand) { return this.countCards(hand) < 11; }
+    public Boolean askAnotherCard(int cardsValue) { return cardsValue < 11; }
 }

@@ -1,5 +1,8 @@
 import deck.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Dealer {
     private final Deck deck;
     private final String name;
@@ -16,4 +19,13 @@ public class Dealer {
     public void mix(){ this.deck.mix(); }
 
     public Card dealCard(){ return this.deck.getCard(); }
+
+    public List<Card> firstDeal(){
+        List<Card> cards = new ArrayList<>();
+        for( int i = 0 ; i < 2 ; i++ ){
+            cards.add(this.dealCard());
+        }
+        return cards;
+    }
+
 }

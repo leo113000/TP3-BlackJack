@@ -2,12 +2,13 @@ import deck.Card;
 import playerStrategy.*;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player extends  Thread{
 
     private String name;
     private int money;
-    private ArrayList<Card> hand;
+    private List<Card> hand;
     private BlackJackStrategy bjs;
     private Mesa mesa;
 
@@ -16,31 +17,43 @@ public class Player extends  Thread{
         this.money = money;
         this.bjs = bjs;
         this.mesa = m;
+        this.hand = new ArrayList<>();
     }
 
     @Override
     public void run() {
 
-        while(this.gamble()!= 0 && this.mesa.isOpen()){
+        // wait random time to start playing
+
+        while(this.money >= this.mesa.GAMBLE_PRICE && this.mesa.isOpen()){
             this.mesa.play(this);
         }
 
-
     }
 
-    public int gamble() {
+    public int pay() {
         // Variable to be returned
-        int gamble = 0;
-        // Save the subtraction between the player's money and a gamble according the strategy
-        int subtraction = this.money - bjs.GAMBLE;
-        // If the subtraction's result is positive or zero
-        if( subtraction >= 0)
-        {
-            // Save the current money
-            this.money = subtraction;
-            // Assign the gamble value to be returned
-            gamble = bjs.GAMBLE;
-        }
-        return gamble;
+        int payment = 0;
+
+        this.money -= this.mesa.GAMBLE_PRICE;
+        this.money = this.money<0 ? 0 : this.money;
+        return payment;
+    }
+
+    public void win(int money){
+        this.money += money;
+    }
+
+
+    public void setHand(List<Card> cards){ this.hand = cards; }
+
+    public void addCard(Card c){ this.hand.add(c); }
+
+    public Boolean askAnotherCard(int valueOfCards) {
+        return this.bjs.askAnotherCard(valueOfCards);
+    }
+
+    public List<Card> getHand() {
+        return  this.hand;
     }
 }
