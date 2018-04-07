@@ -5,19 +5,10 @@ import deck.Card;
 
 
 public abstract class BlackJackStrategy {
-
-
+    /**
+     *  This method is the abstract strategy to be implemented
+     * @param cardsValue the value of the cards
+     * @return
+     */
     public abstract Boolean askAnotherCard(int cardsValue);
-
-    /*
-    protected int countCards(ArrayList<Card> cards){
-        int total = 0;
-
-        for(Card c : cards){
-            total += c.getValue();
-        }
-
-        return total;
-    }
-    */
 }
