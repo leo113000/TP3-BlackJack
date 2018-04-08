@@ -2,7 +2,7 @@ package deck;
 
 public enum Suit {
     //Enum's Objects
-    SPADES("Spades", 1), HEARTS("Hearts", 2), DIAMONDS("Diamonds", 3), CLUBS("Clubs", 4);
+    SPADES("Picas", 1), HEARTS("Corazones", 2), DIAMONDS("Diamantes", 3), CLUBS("Tréboles", 4);
     //Attributes
     private String name;
     private int id;

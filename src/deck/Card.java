@@ -19,4 +19,8 @@ public class Card {
         return suit;
     }
 
+    @Override
+    public String toString() {
+        return this.getValue() + " of " + this.suit;
+    }
 }

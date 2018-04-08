@@ -1,10 +1,9 @@
 package deck;
 
 import deck.Suit;
+import exceptions.EmptyDeckException;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Stack;
+import java.util.*;
 
 public class Deck {
     // Collection attribute
@@ -20,8 +19,15 @@ public class Deck {
     public void mix() {
         Collections.shuffle(this.deck);
     }
-    public Card getCard() {
-        return this.deck.pop();
+    // Return a card or a custom exception
+    public Card getCard() throws EmptyDeckException {
+        Card c;
+        try {
+            c = this.deck.pop();
+        } catch (EmptyStackException e) {
+            throw new EmptyDeckException("no hay más cartas");
+        }
+        return c;
     }
 
     /**
